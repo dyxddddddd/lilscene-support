@@ -11,9 +11,12 @@
       color-scheme: light;
       --paper: #eee;
       --white: #fcfcfc;
-      --ink: #181818;
+      --ink: #343434;
       --muted: #535353;
       --rule: #bcbcbc;
+      --ticket: #d9d9d9;
+      --button: #666;
+      --button-hover: #555;
       --pad: clamp(20px, 4vw, 44px);
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--ink);
@@ -48,8 +51,7 @@
     }
     .ticket-main {
       padding: clamp(36px, 7vw, 78px) var(--pad);
-      color: var(--white);
-      background: var(--ink);
+      background: var(--ticket);
     }
     h1 {
       margin-bottom: 20px;
@@ -58,7 +60,7 @@
       letter-spacing: -.075em;
       line-height: 1.02;
     }
-    .ticket-main p { max-width: 28em; color: #d5d5d5; }
+    .ticket-main p { max-width: 28em; color: var(--muted); }
     .ticket-stub {
       position: relative;
       display: flex;
@@ -90,14 +92,14 @@
       min-height: 46px;
       margin-top: 20px;
       padding: 8px 14px;
-      border: 1px solid var(--ink);
+      border: 1px solid var(--button);
       border-radius: 5px;
       color: var(--white);
-      background: var(--ink);
+      background: var(--button);
       text-decoration: none;
       font-weight: 650;
     }
-    .button:hover { color: var(--ink); background: var(--white); }
+    .button:hover { border-color: var(--button-hover); background: var(--button-hover); }
     .button:focus-visible { outline-color: var(--ink); }
     .guide {
       display: grid;
