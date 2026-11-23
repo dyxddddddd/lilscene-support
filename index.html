@@ -6,6 +6,7 @@
   <meta name="description" content="联系小场面技术支持，反馈 App 使用问题或提出功能建议。">
   <meta name="theme-color" content="#f3f3f3">
   <title>小场面 · 技术支持</title>
+  <link rel="icon" type="image/png" sizes="128x128" href="./app-icon.png">
   <style>
     :root {
       color-scheme: light;
@@ -27,13 +28,10 @@
     :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
     .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
     .mark {
-      display: grid;
-      place-items: center;
-      width: 36px;
-      height: 36px;
+      display: block;
+      width: 40px;
+      height: 40px;
       border-radius: 11px;
-      background: #e1e1e1;
-      font-size: 1.125rem;
     }
     .intro { padding-block: clamp(32px, 7vw, 56px) 26px; }
     h1 { margin-bottom: 14px; font-size: clamp(2.25rem, 7vw, 3rem); line-height: 1.15; }
@@ -95,7 +93,10 @@
 </head>
 <body>
   <main>
-    <header class="brand"><span class="mark" aria-hidden="true">小</span><span>小场面</span></header>
+    <header class="brand">
+      <img class="mark" src="./app-icon.png" width="40" height="40" alt="">
+      <span>小场面</span>
+    </header>
     <section class="intro" aria-labelledby="page-title">
       <h1 id="page-title">技术支持</h1>
       <p>小场面是你的 iPhone 追星手账。记录现场、收藏票根、整理艺人档案或记账时遇到问题，欢迎发邮件联系我们。也欢迎告诉我们你希望改进的地方。</p>
