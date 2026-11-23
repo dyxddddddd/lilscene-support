@@ -4,66 +4,184 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="联系小场面技术支持，反馈 App 使用问题或提出功能建议。">
-  <meta name="theme-color" content="#faf8fc">
+  <meta name="theme-color" content="#eeeeee">
   <title>小场面 · 技术支持</title>
   <style>
     :root {
       color-scheme: light;
-      --paper: #faf8fc;
-      --ticket: #eee7fa;
-      --ink: #241b32;
-      --muted: #5d5269;
-      --accent: #513293;
-      --rule: #b2a0ca;
+      --paper: #eee;
+      --white: #fcfcfc;
+      --ink: #181818;
+      --muted: #535353;
+      --rule: #bcbcbc;
+      --pad: clamp(20px, 4vw, 44px);
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--ink);
       background: var(--paper);
     }
     * { box-sizing: border-box; }
     body { margin: 0; }
-    main { width: min(100% - 48px, 672px); margin: clamp(32px, 9vw, 100px) auto; }
-    header, section { padding-inline: clamp(20px, 5vw, 42px); }
-    header {
-      background: var(--ticket);
-      border-radius: 20px;
-      padding-block: clamp(28px, 6vw, 52px);
-    }
-    .app-name { margin: 0; color: var(--accent); font-weight: 650; }
-    h1 { margin: 8px 0 16px; font-size: clamp(2.25rem, 8vw, 3.5rem); line-height: 1.1; }
-    h2 { margin: 0 0 10px; font-size: 1.25rem; }
+    a { color: inherit; text-underline-offset: .22em; }
+    :focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+    h1, h2, p, ul { margin: 0; }
+    h2 { font-size: 1.35rem; line-height: 1.35; }
     p, li { line-height: 1.75; }
-    .intro { margin: 0; color: var(--muted); }
-    section { padding-block: 26px; }
-    section + section { border-top: 1px dashed var(--rule); }
-    section p { margin: 0 0 12px; }
-    ul { padding-inline-start: 1.4em; margin: 0 0 14px; }
-    li + li { margin-block-start: 4px; }
-    a { color: var(--accent); text-underline-offset: .22em; overflow-wrap: anywhere; }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
-    .muted { color: var(--muted); }
+    .shell { width: min(100% - 32px, 960px); margin-inline: auto; }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px 24px;
+      flex-wrap: wrap;
+      min-height: 68px;
+      padding-block: 9px;
+    }
+    .brand { font-size: 1.125rem; font-weight: 800; letter-spacing: .06em; }
+    .site-header nav { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+    .site-header a { display: inline-flex; min-height: 44px; align-items: center; font-size: .875rem; }
+    .ticket {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px #00000013;
+    }
+    .ticket-main {
+      padding: clamp(36px, 7vw, 78px) var(--pad);
+      color: var(--white);
+      background: var(--ink);
+    }
+    h1 {
+      margin-bottom: 20px;
+      font-size: clamp(2.85rem, 8vw, 5.5rem);
+      font-weight: 850;
+      letter-spacing: -.075em;
+      line-height: 1.02;
+    }
+    .ticket-main p { max-width: 28em; color: #d5d5d5; }
+    .ticket-stub {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 32px var(--pad);
+      border-inline-start: 1px dashed #767676;
+      background: var(--white);
+    }
+    .ticket-stub::before, .ticket-stub::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: -10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--paper);
+    }
+    .ticket-stub::before { top: -10px; }
+    .ticket-stub::after { bottom: -10px; }
+    .ticket-stub p { margin-top: 8px; color: var(--muted); }
+    .email { overflow-wrap: anywhere; }
+    .button {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      min-height: 46px;
+      margin-top: 20px;
+      padding: 8px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 5px;
+      color: var(--white);
+      background: var(--ink);
+      text-decoration: none;
+      font-weight: 650;
+    }
+    .button:hover { color: var(--ink); background: var(--white); }
+    .button:focus-visible { outline-color: var(--ink); }
+    .guide {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      margin-block: 22px;
+      border: 1px solid #d0d0d0;
+      border-radius: 14px;
+      background: var(--white);
+    }
+    .guide section { padding: 28px var(--pad); }
+    .guide section + section { border-inline-start: 1px solid #d0d0d0; }
+    .checklist { margin-top: 12px; padding-inline-start: 1.35em; }
+    .checklist li + li { margin-top: 5px; }
+    .note { margin-top: 14px; color: var(--muted); font-size: .875rem; }
+    details { border-bottom: 1px solid var(--rule); }
+    details:first-of-type { margin-top: 12px; border-top: 1px solid var(--rule); }
+    summary {
+      cursor: pointer;
+      min-height: 46px;
+      padding: 12px 0;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+    details p { padding: 0 0 14px; color: var(--muted); }
+    @media (max-width: 650px) {
+      .ticket, .guide { grid-template-columns: minmax(0, 1fr); }
+      .ticket-stub { border-inline-start: 0; border-top: 1px dashed #767676; }
+      .ticket-stub::before { top: -10px; inset-inline-start: -10px; }
+      .ticket-stub::after { top: -10px; inset-inline-start: auto; inset-inline-end: -10px; }
+      .guide section + section { border-inline-start: 0; border-top: 1px solid #d0d0d0; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="app-name">小场面</p>
-      <h1>技术支持</h1>
-      <p class="intro">小场面是你的 iPhone 追星手账，用来记录现场、收藏票根与回忆、整理艺人档案和账单。</p>
-    </header>
-    <section aria-labelledby="contact">
-      <h2 id="contact">联系小场面</h2>
-      <p>如果你在使用 App 时遇到问题，或者有功能建议，欢迎通过电子邮件联系我们。</p>
-      <p><a href="mailto:asterdong0409@163.com?subject=%E5%B0%8F%E5%9C%BA%E9%9D%A2%20App%20%E5%8F%8D%E9%A6%88">asterdong0409@163.com</a></p>
-    </section>
-    <section aria-labelledby="report">
-      <h2 id="report">反馈问题时可以附上</h2>
-      <ul>
-        <li>iPhone 型号、iOS 版本和小场面 App 版本</li>
-        <li>遇到问题的页面、操作步骤和出现的提示</li>
-        <li>能说明问题的截图（如有）</li>
-      </ul>
-      <p class="muted">发送截图前，请遮盖票根二维码、订单号和支付凭证等个人信息。</p>
-    </section>
+  <header class="site-header shell">
+    <p class="brand">小场面</p>
+    <nav aria-label="支持页导航">
+      <a href="#contact">联系支持</a>
+      <a href="#help">常见问题</a>
+    </nav>
+  </header>
+  <main class="shell">
+    <div class="ticket">
+      <div class="ticket-main">
+        <h1>技术支持</h1>
+        <p>小场面是你的 iPhone 追星手账。记录现场、收藏票根与回忆，整理艺人档案和账单。</p>
+      </div>
+      <section class="ticket-stub" id="contact" aria-labelledby="contact-title">
+        <h2 id="contact-title">联系小场面</h2>
+        <p>遇到使用问题，或有功能建议？欢迎发邮件给我们。</p>
+        <p class="email"><a href="mailto:asterdong0409@163.com">asterdong0409@163.com</a></p>
+        <a class="button" href="mailto:asterdong0409@163.com?subject=%E5%B0%8F%E5%9C%BA%E9%9D%A2%20App%20%E5%8F%8D%E9%A6%88">发送邮件 <span aria-hidden="true">↗</span></a>
+      </section>
+    </div>
+    <div class="guide">
+      <section aria-labelledby="report-title">
+        <h2 id="report-title">反馈问题时可以附上</h2>
+        <ul class="checklist">
+          <li>iPhone 型号、iOS 版本和小场面 App 版本</li>
+          <li>遇到问题的页面、操作步骤和出现的提示</li>
+          <li>能说明问题的截图（如有）</li>
+        </ul>
+        <p class="note">发送截图前，请遮盖票根二维码、订单号和支付凭证等个人信息。</p>
+      </section>
+      <section id="help" aria-labelledby="help-title">
+        <h2 id="help-title">常见问题</h2>
+        <details>
+          <summary>没有收到行程提醒怎么办？</summary>
+          <p>先打开对应的行程详情，确认已开启提醒并选好提醒时间。再到 iPhone「设置」中检查是否允许小场面发送通知。</p>
+        </details>
+        <details>
+          <summary>票根截图识别有误怎么办？</summary>
+          <p>导入截图后，可以在保存前修改演出名称、日期、场馆和票务平台。若关键文字没识别出来，也可以手动填写。</p>
+        </details>
+        <details>
+          <summary>扫描账单后的金额不对怎么办？</summary>
+          <p>扫描结果会填入账单草稿。请对照原单核对金额、币种和日期，有出入时可直接修改，再确认保存。</p>
+        </details>
+        <details>
+          <summary>换手机前怎么备份记录？</summary>
+          <p>在旧设备打开小场面「设置 → 账号与数据」，选择「导出完整备份（含照片）」，并把备份文件另存到可在新设备访问的位置。再在新设备的同一页面选择「从备份恢复」。小 Li 对话不包含在备份中。</p>
+        </details>
+      </section>
+    </div>
   </main>
 </body>
 </html>
